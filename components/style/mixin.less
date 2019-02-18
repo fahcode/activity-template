@@ -1,0 +1,37 @@
+.one-line() {
+	width: 100%; 
+	text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.max-line(@line) {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: @line;
+    overflow: hidden;
+}
+
+.font-dpr(@fontSize){
+    font-size: @fontSize;
+
+    [data-dpr="2"] & {
+        font-size: @fontSize * 2;
+    }
+
+    [data-dpr="3"] & {
+        font-size: @fontSize * 3;
+    }
+
+    [data-dpr="4"] & {
+        font-size: @fontSize * 4;
+    }
+}
+.text-vertical-Align(@width, @height, @fontSize: 12, @origin: 50% 50%, @ratio: 2, @u: rem, @zoom: 108){
+    width: unit(round(@width*@ratio/@zoom, 4), @u);
+    height: unit(round(@height*@ratio/@zoom, 4), @u);
+    line-height: unit(round(@height*@ratio/@zoom, 4), @u);
+    font-size: unit(round(@fontSize*@ratio/@zoom, 4), @u);
+    transform: scale(1/@ratio, 1/@ratio);
+    transform-origin: @origin;
+}
